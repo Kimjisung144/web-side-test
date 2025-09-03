@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>오버로딩 vs 오버라이딩</title>
+</head>
+<body>
+    <h1><a href="../index.html">홈화면</a></h1>
+    <hr>
+    <p>
+        오버로딩 같은경우 같은 클래스 안에서 메소드 이름은 같지만, 매개변수(parameter)의 개수나 타입이 다른 메소드를 여러 개 정의하는 것이다.<br>
+        조건은 메소드 이름: 같아야 함<br>
+        매개변수(파라미터) 리스트: 달라야 함 (개수, 타입, 순서 중 하나라도 달라야 함)<br>
+        리턴 타입: 달라도 되지만, 매개변수만 다르면 성립<br>
+
+        class Calculator {<br>
+            int add(int a, int b) {<br>
+                return a + b;<br>
+            }<br>
+
+            double add(double a, double b) {<br>
+                return a + b;<br>
+            }<br>
+
+            int add(int a, int b, int c) {<br>
+                return a + b + c;<br>
+            }<br>
+        }<br><br>
+
+        오버라이딩 같은경우 상속 관계에서 부모 클래스의 메소드를 자식 클래스에서 재정의하는 것<br>
+        메소드 이름: 같아야 함<br>
+        매개변수 리스트: 완전히 동일해야 함<br>
+        리턴 타입: 부모와 같거나, 자식 타입(covariant return) 가능<br>
+        class Vehicle {<br>
+            void sound() {<br>
+                System.out.println("교통수단 소리를 냅니다");<br>
+            }<br>
+        }<br>
+
+        class Car extends Vehicle {<br>
+        @Override<br>
+            void sound(){<br>
+                System.out.println("부우우웅~");<br>
+            }<br>
+        }<br>
+
+        class Bike extends Vehicle {<br>
+        @Override<br>
+            void sound() {<br>
+                System.out.println("브르르르~");<br>
+            }<br>
+        }<br>
+
+        public class Main {<br>
+            public static void main(String[] args) {<br>
+                Vehicle myCar = new Car();<br>
+                Vehicle myBike = new Bike();<br>
+
+                myCar.sound();  // 부우우웅~<br>
+                myBike.sound(); // 브르르르~<br>
+            }<br>
+        }<br>
+    </p>
+</body>
+</html>
